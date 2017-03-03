@@ -21,7 +21,6 @@ module.exports = {
       collection:'Grupo',
       via:'idMateria'
     }
-
   }
 };
 

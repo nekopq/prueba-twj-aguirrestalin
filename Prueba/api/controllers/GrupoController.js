@@ -78,7 +78,7 @@ module.exports = {
 
   editarGrupo: function(req, res){
     var parametros = req.allParams();
-    if(parametros.id){
+    if(parametros.id && parametros.nombreGrupo){
       var GrupoActualizado = {
         nombreGrupo: parametros.nombreGrupo,
         numeroMaximoEstudiantes: parametros.numeroMaximoEstudiantes,
@@ -117,8 +117,8 @@ module.exports = {
     else{
       return res.view('error',{
         error: {
-          descripcion: "Se necesita el ID para continuar.",
-          rawError: "No se envió el ID",
+          descripcion: "El nombre del grupo no puede estar vacío.",
+          rawError: "El campo nombre se encuentra en blanco",
           url: "/ListarGrupos"
         }
       });
