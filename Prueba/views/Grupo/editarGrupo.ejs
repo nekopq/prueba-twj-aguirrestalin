@@ -1,0 +1,21 @@
+<h1>Editar Grupo</h1>
+
+<div>
+  <form action="/Grupo/EditarGrupo" method="post">
+    <div>
+      <label>Nombre:</label>
+      <input type="text" name="nombreGrupo" value="<%= GrupoAntiguo.nombreGrupo%>">
+    </div>
+    <div>
+      <label>Numero máximo de estudiantes admitidos:</label>
+      <input type="text" name="numeroMaximoEstudiantes" value="<%= GrupoAntiguo.numeroMaximoEstudiantes%>">
+    </div>
+    <div>
+      <label>Materia:</label>
+      <input type="text" name="idMateria" value="<%= GrupoAntiguo.idMateria%>">
+      <input type="hidden" name="id" value="<%= GrupoAntiguo.id %>">
+    </div>
+    <button type="submit">Editar Grupo</button>
+  </form>
+</div>
+<a href="/ListarGrupos">Atrás</a>

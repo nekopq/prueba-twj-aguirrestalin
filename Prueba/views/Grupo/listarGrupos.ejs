@@ -1,0 +1,12 @@
+<h1>Listado de Grupos</h1>
+<div>
+  <% for(var i=0; i<grupos.length; i++){%>
+  <h3>Nombre: <%=grupos[i].nombreGrupo%></h3>
+  <h3>Numero máximo de estudiantes admitidos: <%=grupos[i].numeroMaximoEstudiantes%></h3>
+  <h3>Materia: <%=grupos[i].idMateria%></h3>
+  <a href="/EditarGrupo?id=<%= grupos[i].id %>">Editar</a>
+  <a href="/Grupo/BorrarGrupo?id=<%= grupos[i].id %>">Borrar</a>
+  <%}%>
+</div>
+<a href="/CrearGrupo"><h2>Añadir un nuevo grupo</h2></a>
+<a href="/Inicio">Atrás</a>

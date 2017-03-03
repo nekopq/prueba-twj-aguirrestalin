@@ -1,0 +1,15 @@
+
+<h1>Listado de Materias</h1>
+<div>
+  <% for(var i=0; i<materias.length; i++){%>
+    <% materias[i].fechaCreacion.setUTCDate(15)%>
+    <h3>Nombre: <%=materias[i].nombreMateria%></h3>
+    <h3>Tópico: <%=materias[i].topicoMateria%></h3>
+    <h3>Fecha de Creación: <%=materias[i].fechaCreacion%></h3>
+    <a href="/EditarMateria?id=<%= materias[i].id %>">Editar</a>
+    <a href="/Materia/BorrarMateria?id=<%= materias[i].id %>">Borrar</a>
+  <%}%>
+</div>
+
+<a href="/CrearMateria"><h2>Añadir una nueva materia</h2></a>
+<a href="/Inicio">Atrás</a>

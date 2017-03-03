@@ -1,0 +1,18 @@
+<h1>Editar Materia</h1>
+
+<div>
+  <form action="/Materia/EditarMateria" method="post">
+    <div>
+      <label>Nombre:</label>
+      <input type="text" name="nombreMateria" value="<%= MateriaAntigua.nombreMateria%>">
+    </div>
+    <div>
+      <label>Tópico:</label>
+      <input type="text" name="topicoMateria" value="<%= MateriaAntigua.topicoMateria%>">
+      <input type="hidden" name="fechaCreacion" value="<%= MateriaAntigua.fechaCreacion %>">
+      <input type="hidden" name="id" value="<%= MateriaAntigua.id %>">
+    </div>
+    <button type="submit">Editar Materia</button>
+  </form>
+</div>
+<a href="/ListarMaterias">Atrás</a>
