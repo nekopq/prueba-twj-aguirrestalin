@@ -18,7 +18,8 @@ import {MasterURLService} from "./services/master-url.service";
     routing
   ],
   providers: [
-    MasterURLService
+    MasterURLService,
+    MateriaComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,9 @@
 <div class="container">
+  <h1>{{title}}</h1>
+  <!-- MENSAJE SI NO EXISTEN MATERIAS -->
+  <div [hidden]="materias.length">
+    <h2>No existen materias registradas.</h2>
+  </div>
   <!-- BOTÓN CREAR MATERIA (MUESTRA FORMULARIO CREAR MATERIA)-->
   <div class="row" [hidden]="ocultarCrearMateria">
     <button class="btn btn-block btn-success" (click)="ocultarCrearMateria=!ocultarCrearMateria">Crear Nueva Materia
@@ -33,16 +38,13 @@
       <br>
       <iframe [srcdoc]="frameError" class="container"></iframe>
     </div>
-    <!-- MENSAJE SI NO EXISTEN MATERIAS -->
-    <div [hidden]="materias.length">
-      <h2>No existen materias ingresadas</h2>
-    </div>
     <!-- LISTADO DE MATERIAS EXISTENTES -->
     <div class="col-md-4" *ngFor="let materia of materias">
       <div [hidden]="materia.ocultarMateria">
         <h3><span class="bold">Nombre: </span>{{materia.nombreMateria}}</h3>
         <h4><span class="bold">Tópico: </span>{{materia.topicoMateria}}</h4>
         <h4><span class="bold">Fecha de Creación: </span>{{materia.fechaCreacion | date}}</h4>
+        <button class="btn btn-block btn-warning" [routerLink]="['/Materia',materia.id,'Grupos']">Administrar Grupos</button>
         <button class="btn btn-block btn-info" (click)="materia.ocultarMateria= !materia.ocultarMateria">Actualizar
         </button>
         <button class="btn btn-block btn-danger" (click)="borrarMateria(materia.id)">Borrar</button>

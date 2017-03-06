@@ -1,3 +1,74 @@
-<p>
-  grupo works!
-</p>
+<div class="container">
+  <h1>{{title}} de la Materia con ID: {{_parametros.idMateria}}</h1>
+  <!-- MENSAJE SI NO EXISTEN GRUPOS -->
+  <div [hidden]="grupos.length">
+    <h2>No existen grupos dentro de esta materia.</h2>
+  </div>
+  <!-- BOTÓN CREAR GRUPO (MUESTRA FORMULARIO CREAR GRUPO)-->
+  <div class="row" [hidden]="ocultarCrearGrupo">
+    <button class="btn btn-block btn-success" (click)="ocultarCrearGrupo=!ocultarCrearGrupo">Crear un nuevo grupo
+    </button>
+  </div>
+  <!-- FORMULARIO CREAR GRUPO -->
+  <div class="row" [hidden]="!ocultarCrearGrupo">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <h2>Crear grupo</h2>
+      <form (ngSubmit)="crearGrupo(grupoForm)" #grupoForm="ngForm">
+        <div class="form-group">
+          <h4><span class="bold">Nombre:</span>
+            <input type="text" name="nombreGrupo" [(ngModel)]="grupo.nombreGrupo" placeholder="Escriba un nombre">
+          </h4>
+          <h4><span class="bold">Número Máximo de Estudiantes:</span>
+            <input type="text" name="numeroMaximoEstudiantes" [(ngModel)]="grupo.numeroMaximoEstudiantes" placeholder="Digite la cantidad máxima de estudiantes">
+          </h4>
+        </div>
+        <button class="btn btn-block btn-success" type="submit"
+                [disabled]="disabledButtons.deshabilitarBotonForm||!grupoForm.valid">Crear
+        </button>
+      </form>
+      <button class="btn btn-block btn-primary" (click)="clicCancelarCrearGrupo()">Cancelar</button>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+
+  <div class="row">
+    <!-- MENSAJE DE ERROR AL CREAR UN GRUPO (PÁGINA DE ERROR DEVUELTA POR SAILS) -->
+    <div [hidden]="!frameError">
+      <br>
+      <iframe [srcdoc]="frameError" class="container"></iframe>
+    </div>
+    <!-- LISTADO DE GRUPOS EXISTENTES -->
+    <div class="col-md-4" *ngFor="let grupo of grupos">
+      <div [hidden]="grupo.ocultarGrupo">
+        <h3><span class="bold">Nombre: </span>{{grupo.nombreGrupo}}</h3>
+        <h4><span class="bold">Número Máximo de Estudiantes: </span>{{grupo.numeroMaximoEstudiantes}}</h4>
+        <button class="btn btn-block btn-info" (click)="grupo.ocultarGrupo= !grupo.ocultarGrupo">Actualizar
+        </button>
+        <button class="btn btn-block btn-danger" (click)="borrarGrupo(grupo.id)">Borrar</button>
+      </div>
+      <!-- FORMULARIO ACTUALIZAR GRUPO -->
+      <div [hidden]="!grupo.ocultarGrupo">
+        <form (ngSubmit)="actualizarGrupo(grupo)" #grupoForm="ngForm">
+          <div class="form-group">
+            <h4><span class="bold">Nombre: </span><input type="text" name="nombreGrupo"
+                                                         [(ngModel)]="grupo.nombreGrupo"
+                                                         placeholder="Escriba un nombre"></h4>
+            <label>Número Máximo de Estudiantes:</label>
+            <input type="text" name="numeroMaximoEstudiantes" [(ngModel)]="grupo.numeroMaximoEstudiantes" placeholder="Digite la cantidad máxima de estudiantes">
+            <br>
+          </div>
+          <button class="btn btn-block btn-success" type="submit"
+                  [disabled]="disabledButtons.deshabilitarBotonForm||!grupoForm.valid">Actualizar
+          </button>
+          <button class="btn btn-block btn-primary" (click)="grupo.ocultarGrupo= !grupo.ocultarGrupo">Cancelar
+          </button>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+  <br>
+  <button class="btn btn-block btn-default" [routerLink]="['/Materia']">Volver</button>
+</div>
