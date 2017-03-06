@@ -10,7 +10,7 @@ module.exports = {
 	  return res.view('homepage');
   },
   crearMateria: function(req, res){
-	  return res.view('Materia/CrearMateria');
+	  return res.view('Materia/crearMateria');
   },
   listarMaterias: function(req, res){
     Materia.find().exec(
@@ -19,18 +19,18 @@ module.exports = {
           res.view('error',{
             error:{
               descripcion: "No se pudo cargar la lista de materias.",
-              url: '/ListarMaterias'
+              url: '/listarMaterias'
             }
           });
         }
-        res.view('Materia/ListarMaterias', {
+        res.view('Materia/listarMaterias', {
           materias: listadoMaterias
         });
       }
     )
   },
   editarMateria: function(req, res){
-    var parametros = req.allParams()
+    var parametros = req.allParams();
     if(parametros.id){
       Materia.findOne({
         id: parametros.id
@@ -40,12 +40,12 @@ module.exports = {
             error:{
               descripcion: "Error al leer materia",
               rawError: error,
-              url: "/ListarMaterias"
+              url: "/listarMaterias"
             }
           });
         }
         if(MateriaEncontrada){
-          return res.view("Materia/EditarMateria", {
+          return res.view("Materia/editarMateria", {
             MateriaAntigua: MateriaEncontrada
           })
         }
@@ -54,7 +54,7 @@ module.exports = {
             error: {
               descripcion: "La materia con el ID \""+parametros.id+" no fue encontrada.",
               rawError: "No existe la Materia",
-              url: "/ListarMaterias"
+              url: "/listarMaterias"
             }
           });
         }
@@ -65,14 +65,14 @@ module.exports = {
         error: {
           descripcion: "No se ha especificado el ID",
           rawError: "No se ingresó el parametro necesitado",
-          url: "/ListarMaterias"
+          url: "/listarMaterias"
         }
       });
     }
   },
 
   crearGrupo: function(req, res){
-    return res.view('Grupo/CrearGrupo');
+    return res.view('Grupo/crearGrupo');
   },
   listarGrupos: function(req, res){
     Grupo.find().exec(
@@ -81,18 +81,18 @@ module.exports = {
           res.view('error',{
             error:{
               descripcion: "No se pudo cargar la lista de grupos.",
-              url: '/ListarGrupos'
+              url: '/listarGrupos'
             }
           });
         }
-        res.view('Grupo/ListarGrupos', {
+        res.view('Grupo/listarGrupos', {
           grupos: listadoGrupos
         });
       }
     )
   },
   editarGrupo: function(req, res){
-    var parametros = req.allParams()
+    var parametros = req.allParams();
     if(parametros.id){
       Grupo.findOne({
         id: parametros.id
@@ -102,12 +102,12 @@ module.exports = {
             error:{
               descripcion: "Error al leer grupo",
               rawError: error,
-              url: "/ListarGrupos"
+              url: "/listarGrupos"
             }
           });
         }
         if(GrupoEncontrado){
-          return res.view("Grupo/EditarGrupo", {
+          return res.view("Grupo/editarGrupo", {
             GrupoAntiguo: GrupoEncontrado
           })
         }
@@ -116,7 +116,7 @@ module.exports = {
             error: {
               descripcion: "El grupo con el ID \""+parametros.id+" no fue encontrado.",
               rawError: "No existe el grupo",
-              url: "/ListarGrupos"
+              url: "/listarGrupos"
             }
           });
         }
@@ -127,7 +127,7 @@ module.exports = {
         error: {
           descripcion: "No se ha especificado el ID",
           rawError: "No se ingresó el parametro necesitado",
-          url: "/ListarGrupos"
+          url: "/listarGrupos"
         }
       });
     }
@@ -137,7 +137,7 @@ module.exports = {
   error: function(req, res){
     return res.view('error', {
       error: {
-        descripción: "¡Encontraste una página de error! ¡Bien por ti!",
+        descripcion: "¡Encontraste una página de error! ¡Bien por ti!",
         rawError: "Página de error",
         url: "homepage"
       }

@@ -24,7 +24,7 @@ module.exports = {
             error: {
               descripcion: 'No se pudo crear una nueva materia. ERROR: '+error,
               rawError: err,
-              url: "/CrearMateria"
+              url: "/crearMateria"
             }
           });
         });
@@ -35,11 +35,11 @@ module.exports = {
               res.view('error',{
                 error:{
                   descripcion: "No se pudo cargar la lista de materias.",
-                  url: "/ListarMaterias"
+                  url: "/listarMaterias"
                 }
               })
             }
-            res.view('Materia/ListarMaterias', {
+            res.view('Materia/listarMaterias', {
               materias: listadoMaterias
             });
           }
@@ -50,7 +50,7 @@ module.exports = {
           title: 'Error',
           error: {
             descripcion: 'No se ingresó el nombre de la materia.',
-            url: '/CrearMateria'
+            url: '/crearMateria'
           }
         })
       }
@@ -60,7 +60,7 @@ module.exports = {
         title: 'Error',
         error: {
           descripcion: 'Método HTTP no admitido.',
-          url: '/CrearMateria'
+          url: '/crearMateria'
         }
       })
     }
@@ -83,7 +83,7 @@ module.exports = {
               error: {
                 descripcion: "Error al actualizar.",
                 rawError: error,
-                url: "/ListarMaterias"
+                url: "/listarMaterias"
               }
             });
           }
@@ -94,11 +94,11 @@ module.exports = {
                 error: {
                   descripcion: "Error al cargar las materias",
                   rawError: error,
-                  url: "/ListarMaterias"
+                  url: "/listarMaterias"
                 }
               });
             }
-            res.view('Materia/ListarMaterias', {
+            res.view('Materia/listarMaterias', {
               materias: listadoMaterias
             });
           })
@@ -109,7 +109,7 @@ module.exports = {
         error: {
           descripcion: "La materia debe tener un nombre.",
           rawError: "No se ingresó un nombre",
-          url: "/ListarMaterias"
+          url: "/listarMaterias"
         }
       });
     }
@@ -126,7 +126,7 @@ module.exports = {
             error: {
               descripcion: "Error al borrar la materia.",
               rawError: error,
-              url: "/ListarMaterias"
+              url: "/listarMaterias"
             }
           });
         }
@@ -136,11 +136,11 @@ module.exports = {
               error: {
                 descripcion: "Error al cargar las materias",
                 rawError: error,
-                url: "/ListarMaterias"
+                url: "/listarMaterias"
               }
             });
           }
-          res.view('Materia/ListarMaterias', {
+          res.view('Materia/listarMaterias', {
             materias: listadoMaterias
           });
         })
