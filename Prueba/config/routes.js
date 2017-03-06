@@ -32,7 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'get /': 'RutasController.inicio',
+  //'get /': 'RutasController.inicio',
   'get /Inicio': 'RutasController.inicio',
 
   'get /CrearMateria': 'RutasController.crearMateria',
