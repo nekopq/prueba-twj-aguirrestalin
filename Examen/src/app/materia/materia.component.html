@@ -44,7 +44,7 @@
         <h3><span class="bold">Nombre: </span>{{materia.nombreMateria}}</h3>
         <h4><span class="bold">Tópico: </span>{{materia.topicoMateria}}</h4>
         <h4><span class="bold">Fecha de Creación: </span>{{materia.fechaCreacion | date}}</h4>
-        <button class="btn btn-block btn-warning" [routerLink]="['/Materia',materia.id,'Grupos']">Administrar Grupos</button>
+        <button class="btn btn-block btn-warning" [routerLink]="['/Materias',materia.id,'Grupos']">Administrar Grupos</button>
         <button class="btn btn-block btn-info" (click)="materia.ocultarMateria= !materia.ocultarMateria">Actualizar
         </button>
         <button class="btn btn-block btn-danger" (click)="borrarMateria(materia.id)">Borrar</button>

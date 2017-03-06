@@ -7,8 +7,8 @@ import {GrupoComponent} from "./grupo/grupo.component";
 export const routes: Routes = [
   {path: '', redirectTo: 'Inicio', pathMatch: 'full'},
   {path: 'Inicio', component: InicioComponent},
-  {path: 'Materia', component: MateriaComponent},
-  {path: 'Materia/:idMateria/Grupos', component: GrupoComponent}
+  {path: 'Materias', component: MateriaComponent},
+  {path: 'Materias/:idMateria/Grupos', component: GrupoComponent}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
