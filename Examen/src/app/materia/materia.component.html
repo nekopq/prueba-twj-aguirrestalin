@@ -1,0 +1,73 @@
+<div class="container">
+  <!-- BOTÓN CREAR MATERIA (MUESTRA FORMULARIO CREAR MATERIA)-->
+  <div class="row" [hidden]="ocultarCrearMateria">
+    <button class="btn btn-block btn-success" (click)="ocultarCrearMateria=!ocultarCrearMateria">Crear Nueva Materia
+    </button>
+  </div>
+  <!-- FORMULARIO CREAR MATERIA -->
+  <div class="row" [hidden]="!ocultarCrearMateria">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
+      <h2>Crear materia</h2>
+      <form (ngSubmit)="crearMateria(materiaForm)" #materiaForm="ngForm">
+        <div class="form-group">
+          <h4><span class="bold">Nombre:</span>
+            <input type="text" name="nombreMateria" [(ngModel)]="materia.nombreMateria" placeholder="Escriba un nombre">
+          </h4>
+          <h4><span class="bold">Tópico:</span>
+            <input type="text" name="topicoMateria" [(ngModel)]="materia.topicoMateria" placeholder="Escriba un tópico">
+          </h4>
+        </div>
+        <button class="btn btn-block btn-success" type="submit"
+                [disabled]="disabledButtons.deshabilitarBotonForm||!materiaForm.valid">Crear
+        </button>
+      </form>
+      <button class="btn btn-block btn-primary" (click)="clicCancelarCrearMateria()">Cancelar</button>
+    </div>
+    <div class="col-sm-3"></div>
+  </div>
+
+  <div class="row">
+    <!-- MENSAJE DE ERROR AL CREAR UNA MATERIA (PÁGINA DE ERROR DEVUELTA POR SAILS) -->
+    <div [hidden]="!frameError">
+      <br>
+      <iframe [srcdoc]="frameError" class="container"></iframe>
+    </div>
+    <!-- MENSAJE SI NO EXISTEN MATERIAS -->
+    <div [hidden]="materias.length">
+      <h2>No existen materias ingresadas</h2>
+    </div>
+    <!-- LISTADO DE MATERIAS EXISTENTES -->
+    <div class="col-md-4" *ngFor="let materia of materias">
+      <div [hidden]="materia.ocultarMateria">
+        <h3><span class="bold">Nombre: </span>{{materia.nombreMateria}}</h3>
+        <h4><span class="bold">Tópico: </span>{{materia.topicoMateria}}</h4>
+        <h4><span class="bold">Fecha de Creación: </span>{{materia.fechaCreacion | date}}</h4>
+        <button class="btn btn-block btn-info" (click)="materia.ocultarMateria= !materia.ocultarMateria">Actualizar
+        </button>
+        <button class="btn btn-block btn-danger" (click)="borrarMateria(materia.id)">Borrar</button>
+      </div>
+      <!-- FORMULARIO ACTUALIZAR MATERIA -->
+      <div [hidden]="!materia.ocultarMateria">
+        <form (ngSubmit)="actualizarMateria(materia)" #materiaForm="ngForm">
+          <div class="form-group">
+            <h4><span class="bold">Nombre: </span><input type="text" name="nombreMateria"
+                                                         [(ngModel)]="materia.nombreMateria"
+                                                         placeholder="Escriba un nombre"></h4>
+            <label>Tópico:</label>
+            <input type="text" name="topicoMateria" [(ngModel)]="materia.topicoMateria" placeholder="Escriba un tópico">
+            <br>
+          </div>
+          <button class="btn btn-block btn-success" type="submit"
+                  [disabled]="disabledButtons.deshabilitarBotonForm||!materiaForm.valid">Actualizar
+          </button>
+          <button class="btn btn-block btn-primary" (click)="materia.ocultarMateria= !materia.ocultarMateria">Cancelar
+          </button>
+        </form>
+      </div>
+
+
+    </div>
+  </div>
+
+</div>
